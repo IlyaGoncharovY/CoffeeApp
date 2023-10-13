@@ -24,7 +24,7 @@ export const CoffeeItem: FC<ICoffeeItem> = ({coffee}) => {
         source={{
           uri: coffee.img,
         }}
-        style={{width: 40, height: 40}}
+        style={styles.image}
       />
       <Text>{coffee.description}</Text>
       <Button color={'#ffc0ad'} title={'+'} onPress={addToBasketHandler} />
@@ -40,5 +40,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+  },
+  image: {
+    width: 40,
+    height: 40,
   },
 });
