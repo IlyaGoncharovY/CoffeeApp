@@ -31,6 +31,12 @@ const initialState: initialStateType = {
       description: 'Cool Latte',
       img: 'http://vidpoviday.com/wp-content/uploads/2016/04/d90dc819d58c6df61a48452ef80f3719.jpg',
     },
+    {
+      id: '4',
+      title: 'Mocko',
+      description: 'Cool Mocko',
+      img: 'http://vidpoviday.com/wp-content/uploads/2016/04/d90dc819d58c6df61a48452ef80f3719.jpg',
+    },
   ],
 };
 
