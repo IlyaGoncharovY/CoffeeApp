@@ -6,7 +6,7 @@ import basketReducer from '../../features/basket/slice/BasketSlice';
 export const store = configureStore({
   reducer: {
     coffee: coffeeReducer,
-    coffeeInBasket: basketReducer,
+    basket: basketReducer,
   },
 });
 
