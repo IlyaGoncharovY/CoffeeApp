@@ -3,7 +3,10 @@ import {Button, Image, StyleSheet, Text, View} from 'react-native';
 
 import {CoffeesType} from '../../../slice/CoffeeSlice';
 import {gStyles} from '../../../../../common/gStyle/gStyle';
-import {useAppDispatch} from '../../../../../store/config/hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../store/config/hooks';
 import {addToBasket} from '../../../../basket/slice/BasketSlice';
 
 interface ICoffeeItem {
@@ -11,11 +14,18 @@ interface ICoffeeItem {
 }
 
 export const CoffeeItem: FC<ICoffeeItem> = ({coffee}) => {
+  const coffeeInBasket = useAppSelector(state => state.basket.coffeesForBasket);
+
   const dispatch = useAppDispatch();
 
   const addToBasketHandler = () => {
     dispatch(addToBasket(coffee));
   };
+
+  const coffeeInBasketCount =
+    coffeeInBasket.find(item => item.id === coffee.id)?.count || 0;
+
+  console.log(coffeeInBasketCount);
 
   return (
     <View style={styles.container}>
@@ -27,7 +37,12 @@ export const CoffeeItem: FC<ICoffeeItem> = ({coffee}) => {
         style={styles.image}
       />
       <Text>{coffee.description}</Text>
-      <Button color={'#ffc0ad'} title={'+'} onPress={addToBasketHandler} />
+      <Text>{coffeeInBasketCount > 0 ? coffeeInBasketCount : ''}</Text>
+      <Button
+        color={coffeeInBasketCount > 0 ? '#9656a1' : '#ffc0ad'}
+        title={'+'}
+        onPress={addToBasketHandler}
+      />
     </View>
   );
 };
@@ -44,5 +59,9 @@ const styles = StyleSheet.create({
   image: {
     width: 40,
     height: 40,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
