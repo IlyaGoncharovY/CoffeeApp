@@ -14,16 +14,14 @@ export const BasketContainer = () => {
 
   const dispatch = useAppDispatch();
 
-  const purchasedСoffeeCount = coffeesForBasket.map(el => el.count);
-  const purchasedСoffeeTitle = coffeesForBasket.map(el => el.title);
+  const coffeeCount = coffeesForBasket.map(el => el.count);
+  const coffeeTitle = coffeesForBasket.map(el => el.title);
 
   const orderButtonHandler = () => {
     Alert.alert(
       'Thank you for ordering!',
-      `${purchasedСoffeeTitle
-        .map(
-          (title, index) => purchasedСoffeeCount[index] + '- ' + title + '\n',
-        )
+      `${coffeeTitle
+        .map((title, index) => coffeeCount[index] + '- ' + title + '\n')
         .join('')}`,
       [{text: 'ok'}],
     );
@@ -43,7 +41,7 @@ export const BasketContainer = () => {
       </View>
       <View style={styles.buttonStyle}>
         <Button
-          disabled={purchasedСoffeeCount.length === 0}
+          disabled={coffeeCount.length === 0}
           color={'#ffc0ad'}
           title={'Заказать'}
           onPress={orderButtonHandler}
