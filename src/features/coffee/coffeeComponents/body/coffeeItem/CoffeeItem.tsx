@@ -7,7 +7,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../../store/config/hooks';
-import {addToBasket} from '../../../../basket/slice/BasketSlice';
+import {addToBasket, removeCoffee} from '../../../../basket/slice/BasketSlice';
 
 interface ICoffeeItem {
   coffee: CoffeesType;
@@ -22,10 +22,12 @@ export const CoffeeItem: FC<ICoffeeItem> = ({coffee}) => {
     dispatch(addToBasket(coffee));
   };
 
+  const removeCoffeeHandler = (coffeeId: string) => {
+    dispatch(removeCoffee(coffeeId));
+  };
+
   const coffeeInBasketCount =
     coffeeInBasket.find(item => item.id === coffee.id)?.count || 0;
-
-  console.log(coffeeInBasketCount);
 
   return (
     <View style={styles.container}>
@@ -38,11 +40,19 @@ export const CoffeeItem: FC<ICoffeeItem> = ({coffee}) => {
       />
       <Text>{coffee.description}</Text>
       <Text>{coffeeInBasketCount > 0 ? coffeeInBasketCount : ''}</Text>
-      <Button
-        color={coffeeInBasketCount > 0 ? '#9656a1' : '#ffc0ad'}
-        title={'+'}
-        onPress={addToBasketHandler}
-      />
+      <View style={styles.buttonContainer}>
+        <Button
+          color={'#ffc0ad'}
+          disabled={coffeeInBasketCount === 0}
+          title={'-'}
+          onPress={() => removeCoffeeHandler(coffee.id)}
+        />
+        <Button
+          color={coffeeInBasketCount > 0 ? '#9656a1' : '#ffc0ad'}
+          title={'+'}
+          onPress={addToBasketHandler}
+        />
+      </View>
     </View>
   );
 };
@@ -63,5 +73,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    margin: 10,
   },
 });
