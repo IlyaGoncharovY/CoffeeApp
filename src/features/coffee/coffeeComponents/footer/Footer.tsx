@@ -21,8 +21,13 @@ export const Footer = () => {
   );
 
   return (
-    <TouchableOpacity style={styles.buttonContainer} onPress={LoadScene}>
-      <Text style={gStyles.title}>Basket Container</Text>
+    <TouchableOpacity
+      style={totalCount === 0 ? styles.disabledButton : styles.buttonContainer}
+      onPress={LoadScene}
+      disabled={totalCount === 0}>
+      <Text style={gStyles.title}>
+        {totalCount === 0 ? 'add coffee' : 'go to cart'}
+      </Text>
       <Text>{totalCount || ''}</Text>
     </TouchableOpacity>
   );
@@ -31,6 +36,11 @@ export const Footer = () => {
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: '#ffc0ad',
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  disabledButton: {
+    backgroundColor: '#b4b3af',
     alignItems: 'center',
     paddingVertical: 10,
   },
