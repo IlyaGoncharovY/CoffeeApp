@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
 
-import {CoffeesType} from '../../../coffee/slice/CoffeeSlice';
+import {removeCoffee} from '../../slice/BasketSlice';
 import {gStyles} from '../../../../common/gStyle/gStyle';
 import {useAppDispatch} from '../../../../store/config/hooks';
-import {removeCoffee} from '../../slice/BasketSlice';
+import {CoffeesType} from '../../../coffee/slice/CoffeeSlice';
 
 interface IItemBasket {
   coffeesForBasket: CoffeesType;

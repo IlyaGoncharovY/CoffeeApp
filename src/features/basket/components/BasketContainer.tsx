@@ -1,11 +1,11 @@
 import React from 'react';
 import {Alert, Button, FlatList, StyleSheet, View} from 'react-native';
 
+import {deleteBasket} from '../slice/BasketSlice';
 import {ItemBasket} from './itemBasket/ItemBasket';
 import {gStyles} from '../../../common/gStyle/gStyle';
-import {useAppDispatch, useAppSelector} from '../../../store/config/hooks';
 import {CoffeesType} from '../../coffee/slice/CoffeeSlice';
-import {deleteBasket} from '../slice/BasketSlice';
+import {useAppDispatch, useAppSelector} from '../../../store/config/hooks';
 
 export const BasketContainer = () => {
   const coffeesForBasket = useAppSelector(
