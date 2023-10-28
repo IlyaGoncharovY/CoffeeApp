@@ -11,4 +11,7 @@ export const gStyles = StyleSheet.create({
     textAlign: 'center',
     margin: 5,
   },
+  header: {
+    backgroundColor: '#e78fb3',
+  },
 });
