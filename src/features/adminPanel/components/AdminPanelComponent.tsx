@@ -1,17 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {useAppSelector} from '../../../store/config/hooks';
+import {useNavigationPageInApp} from '../../../common/assets/customHook/useNavigationPageInApp';
 
 export const AdminPanelComponent = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const isAuth = useAppSelector(state => state.auth.isAuth);
-
-  if (isAuth) {
-    navigation.navigate('CoffeePage');
-  }
+  useNavigationPageInApp(isAuth, 'CoffeePage');
 
   return (
     <View>
