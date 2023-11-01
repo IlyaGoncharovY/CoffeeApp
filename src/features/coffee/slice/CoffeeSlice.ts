@@ -60,8 +60,11 @@ const coffeeSlice = createSlice({
     addCoffee: (state, action: PayloadAction<CoffeesType>) => {
       state.coffees.push({...action.payload, id: v1() as string});
     },
+    deleteCoffee: (state, action: PayloadAction<string>) => {
+      state.coffees = state.coffees.filter(el => el.id !== action.payload);
+    },
   },
 });
-export const {addCoffee} = coffeeSlice.actions;
+export const {addCoffee, deleteCoffee} = coffeeSlice.actions;
 
 export default coffeeSlice.reducer;
